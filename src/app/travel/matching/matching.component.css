@@ -1,0 +1,28 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 12%;
+  }
+  
+  mat-form-field{
+    padding: 10px;
+  }
+
+  .lead{
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    text-align: center;
+  }
+  h1{
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    text-align: center;
+    size: 50px;
+  }

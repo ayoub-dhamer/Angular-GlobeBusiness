@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Home</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link active" [routerLink]="['list-t']">Travels
+                  <span class="visually-hidden">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="['tadd']">Add Travel</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="['search']">Today's Trips</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="['matching/:id']">About</a>
+              </li>
+              
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <router-outlet></router-outlet>
+      
+   <!--<div>
+        <a class="btn btn-primary mt-4" [routerLink]="['list-t']">
+             List Travel
+        </a>
+    
+    <a class="btn btn-primary mt-4" [routerLink]="['tadd']">
+            Add travel
+    </a>
+    
+    <a class="btn btn-primary mt-4" [routerLink]="['search']">
+            search
+    </a>
+    
+    
+    </div>
+    <router-outlet></router-outlet>-->
