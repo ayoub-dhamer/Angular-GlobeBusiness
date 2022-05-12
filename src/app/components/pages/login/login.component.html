@@ -1,0 +1,46 @@
+<div class="main-wrapper">
+  <section
+    class="sign-up-in-section bg-dark ptb-60"
+    style="
+      background: url('assets/img/page-header-bg.svg') no-repeat right bottom;
+    "
+  >
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-lg-5 col-md-8 col-12">
+          <a routerLink="/" class="mb-4 d-block text-center"
+            ><img src="assets/img/logo-white.png" alt="logo" class="img-fluid"
+          /></a>
+          <div class="register-wrap p-5 bg-light shadow rounded-custom">
+            <h1 class="text-center">Add a new Post</h1>
+            <div
+              class="position-relative d-flex align-items-center justify-content-center mt-4 py-4"
+            >
+              <span class="divider-bar"></span>
+             
+            </div>
+            <div class="col-md-6 offset-md-3">
+              <form class="was-validated" (ngSubmit)="onSubmit()">
+                  <div class="mb-3">
+                    <label for="validationTextarea" class="form-label">Textarea</label>
+                    <textarea class="form-control is-invalid" id="validationTextarea" 
+                    placeholder="Description" required [(ngModel)] = "post.descritpion" name="descritpion"></textarea>
+                    
+                  </div>
+              
+                  <div class="mb-3">
+                      <input type="file" class="form-control" aria-label="file example" required>
+                    </div>
+                
+                  <div class="mb-3">
+                    <button class="btn btn-primary" type="submit" >Submit form</button>
+                  </div>
+                </form> 
+          </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

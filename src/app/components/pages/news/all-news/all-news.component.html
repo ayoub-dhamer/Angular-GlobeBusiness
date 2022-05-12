@@ -1,0 +1,40 @@
+<section class="masonary-blog-section ptb-120">
+  <div class="container">
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="news">All Posts</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="login">Add Post</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <h1 class="text-center">All Posts</h1>
+<div *ngFor="let post of posts" class="container">
+<div class="card mb-3">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body" >
+      <h5 class="card-title">Skander HAMDI</h5>
+      <p class="card-text"> {{post.descritpion}}</p>
+      <p class="card-text"><small class="text-muted">{{post.datePost}}</small></p>
+    </div>
+    
+        <i class="fa-regular fa-heart"></i>
+     
+        <i class="fa-solid fa-comments"></i>  
+    
+     
+  </div>
+  
+</div> 
+
+
+    <!--pagination end-->
+  </div>
+</section>
