@@ -73,8 +73,6 @@ export class EventRatingComponent implements OnInit {
             },
           });
       }
-    } else {
-      this.updateRating();
     }
   }
 
