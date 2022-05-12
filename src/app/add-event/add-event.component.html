@@ -1,0 +1,93 @@
+<p mat-dialog-title>Add Event Form</p>
+<div mat-dialog-content>
+  <form [formGroup]="eventForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Event Title</mat-label>
+      <input formControlName="title" matInput placeholder="Title" />
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Event description</mat-label>
+      <textarea
+        formControlName="description"
+        matInput
+        placeholder="Description "
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Choose a date</mat-label>
+      <input formControlName="startDate" matInput [matDatepicker]="picker" />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Event category</mat-label>
+      <mat-select formControlName="category" placeholder="Category">
+        <mat-option
+          *ngFor="let category of categories"
+          [value]="category.name"
+          >{{ category.name }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Event Location</mat-label>
+      <input formControlName="location" matInput placeholder="Location" />
+      <mat-icon> location_on</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Event Duration</mat-label>
+      <input formControlName="duration" matInput placeholder="duration" />
+      <mat-icon>date_range</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="actionBtn == 'Save'" appearance="outline">
+      <mat-label>Event Type</mat-label>
+      <mat-select formControlName="type" placeholder="Type">
+        <mat-option value="public">Public</mat-option>
+        <mat-option value="private">Private</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Event Image</mat-label>
+      <ngx-mat-file-input (change)="onSelectedFile($event)">
+      </ngx-mat-file-input>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+
+    <!--<mat-form-field appearance="fill">
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+              <input matStartDate formControlName="start" placeholder="Start date">
+              <input matEndDate formControlName="end" placeholder="End date">
+            </mat-date-range-input>
+            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          
+            
+          </mat-form-field>-->
+  </form>
+</div>
+
+<div mat-dialog-action [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  <button
+    style="margin-left: 8px"
+    mat-raised-button
+    color="primary"
+    (click)="addEvent()"
+  >
+    {{ actionBtn }}
+  </button>
+  <img mat-card-image [src]="selectedFile" alt="" />
+</div>

@@ -1,0 +1,41 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.new,
+.old {
+  border-radius: 15px;
+  font-family: "Georgia Pro", sans-serif;
+  font-weight: bold;
+  width: 60%;
+  float: left;
+}
+
+.old {
+  background-color: yellow;
+}
+
+.new {
+  background-color: lawngreen;
+}
+
+.text {
+  position: relative;
+  left: 30%;
+  color: blue;
+  font-size: 10px;
+}

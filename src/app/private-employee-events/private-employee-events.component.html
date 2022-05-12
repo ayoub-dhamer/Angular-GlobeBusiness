@@ -1,0 +1,113 @@
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+/>
+
+<div class="container header"></div>
+<h1>List of All Available Events</h1>
+<div class="flex-container">
+  <mat-card *ngFor="let evt of events" class="example-card">
+    <div class="card__content">
+      <div class="card__front">
+        <div class="favorite">
+          <div *ngIf="validateFavorite(evt.event.eventId)">
+            <i class="material-icons" style="color: rgb(255, 0, 251)"
+              >favorite</i
+            >
+          </div>
+        </div>
+
+        <mat-card-header>
+          <mat-card-title>{{ evt.event.title }}</mat-card-title>
+        </mat-card-header>
+        <img
+          mat-card-image
+          src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+          alt="Photo of a Shiba Inu"
+        />
+        <mat-card-content>
+          <p>
+            {{ evt.event.description }}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button
+            mat-button
+            [routerLink]="['/eventInfos', evt.event.eventId]"
+            routerLinkActive="active"
+          >
+            <mat-icon>menu</mat-icon>
+          </button>
+        </mat-card-actions>
+      </div>
+
+      <div class="card__back">
+        <div class="favorite">
+          <div *ngIf="validateFavorite(evt.event.eventId); else elseBlock">
+            <button mat-button (click)="deleteFavorite(evt.event)">
+              <i class="material-icons" style="color: rgb(255, 0, 251)"
+                >favorite</i
+              >
+            </button>
+          </div>
+          <ng-template #elseBlock>
+            <button mat-button (click)="addFavorite(evt.event)">
+              <mat-icon>favorite_border</mat-icon>
+            </button>
+          </ng-template>
+        </div>
+
+        {{ evt.event.title }}
+        <hr />
+
+        Date : <br />
+        <mat-icon>date_range</mat-icon> {{ evt.event.startDate | date }} <br />
+
+        Location : <br />
+        <mat-icon>location_on</mat-icon> {{ evt.event.location }} <br />
+
+        Category : <br />
+        <mat-icon>category</mat-icon> {{ evt.event.category.name }} <br />
+
+        Duration of the event : <br />
+        <mat-icon>watch_later</mat-icon> {{ evt.event.duration }}
+
+        <div *ngIf="validateRating(evt.event.eventId); else blo">
+          <button
+            mat-raised-button
+            color="accent"
+            (click)="openDialog(evt.event)"
+          >
+            Edit Rating
+          </button>
+          <button
+            mat-raised-button
+            color="warn"
+            style="margin-left: 8px"
+            (click)="deleteRating(evt.event)"
+          >
+            Delete Rating
+          </button>
+        </div>
+
+        <ng-template #blo
+          ><button
+            mat-raised-button
+            color="primary"
+            (click)="openDialog(evt.event)"
+          >
+            Add Rating
+          </button></ng-template
+        >
+
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="showRatings(evt.event)"
+        >
+          Show Ratings
+        </button>
+      </div>
+    </div>
+  </mat-card>
+</div>

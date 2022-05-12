@@ -1,0 +1,90 @@
+<table
+  mat-table
+  matSort
+  matSortDisabledClear
+  matSortActive="id"
+  matSortDirection="asc"
+  [dataSource]="dataSource"
+  class="mat-elevation-z8"
+>
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox
+        [checked]="selection.hasValue() && isAllSelected()"
+        [indeterminate]="selection.hasValue() && !isAllSelected()"
+        (change)="$event ? masterToggle() : null"
+      >
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-checkbox
+        [checked]="selection.isSelected(element)"
+        (click)="$event.stopPropagation(); onEmployeeToggled(element)"
+        (change)="$event ? selection.toggle(element) : null"
+      ></mat-checkbox>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>#</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.id }}
+    </td>
+  </ng-container>
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="Full Name">
+    <th mat-header-cell *matHeaderCellDef>Full Name</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.name + " " + element.lastName }}
+    </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="Email">
+    <th mat-header-cell *matHeaderCellDef>Email</th>
+    <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="Gender">
+    <th mat-header-cell *matHeaderCellDef>Gender</th>
+    <td mat-cell *matCellDef="let element">{{ element.gender }}</td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="Phone">
+    <th mat-header-cell *matHeaderCellDef>Phone</th>
+    <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="Profession">
+    <th mat-header-cell *matHeaderCellDef>Profession</th>
+    <td mat-cell *matCellDef="let element">{{ element.profession.name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="Birth Date">
+    <th mat-header-cell *matHeaderCellDef>Birth Date</th>
+    <td mat-cell *matCellDef="let element">{{ element.birthday | date }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: displayedColumns"
+    (click)="selection.toggle(row)"
+  ></tr>
+</table>
+<mat-paginator
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  aria-label="Select page of users"
+></mat-paginator>
+
+<button mat-raised-button (click)="sendInvitation()" color="primary">
+  Send Invitation
+</button>
+<button mat-raised-button (click)="goBack()" color="warn">Go back</button>
+
+<div *ngIf="spinner">
+  <mat-spinner class="example-margin" color="purple"></mat-spinner>
+</div>

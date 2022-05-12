@@ -1,0 +1,29 @@
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+/>
+
+<div class="container header"></div>
+<h1>List of your Favorite events</h1>
+<div class="flex-container">
+  <mat-card *ngFor="let favorite of favoriteEvents" class="example-card">
+    <mat-card-header>
+      <mat-card-title>{{ favorite.event.title }}</mat-card-title>
+    </mat-card-header>
+    <img
+      mat-card-image
+      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+      alt="Photo of a Shiba Inu"
+    />
+    <mat-card-content>
+      <p>
+        {{ favorite.event.description }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="removeFavorite(favorite.favoriteId)">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

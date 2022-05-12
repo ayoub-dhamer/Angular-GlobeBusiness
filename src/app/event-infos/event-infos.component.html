@@ -1,0 +1,7 @@
+<ng-container *ngFor="let evt of events">
+    <div *ngIf="evt.id == id" class="container">
+        <h1>The event date is</h1>
+        
+        <p>{{ evt.startDate | date }}</p>
+    </div>
+</ng-container>
