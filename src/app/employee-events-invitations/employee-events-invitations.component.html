@@ -1,0 +1,54 @@
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+/>
+
+<div class="container header"></div>
+<h1>List of All The Events Invitations</h1>
+<div class="flex-container">
+  <div *ngFor="let event of events">
+    <div *ngIf="event.state == 'New'">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title
+            style="
+              font-family: 'Gabriola', sans-serif;
+              font-weight: bold;
+              font-size: 30px;
+            "
+            >{{ event.event.title }}</mat-card-title
+          >
+        </mat-card-header>
+
+        <img
+          class="image"
+          mat-card-image
+          [src]="getImage(event.event.image)"
+          [alt]="event.event.image.name"
+        />
+
+        <mat-card-content>
+          <p>
+            {{ event.event.description }}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button
+            mat-button
+            (click)="acceptEventInvitation(event.invitationId)"
+          >
+            <i class="fa-solid fa-circle-check" style="color: greenyellow"></i
+            >Accept
+          </button>
+
+          <button
+            mat-button
+            (click)="refuseEventInvitation(event.invitationId)"
+          >
+            <i class="fa-solid fa-circle-minus" style="color: red"></i>Refuse
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

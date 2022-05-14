@@ -1,0 +1,14 @@
+::ng-deep .success-snackbar {
+    background: #1fcd98;
+    white-space: pre-wrap;
+}
+
+.flex-container {
+    width: 70%;
+    position: relative;
+    left: 25%;
+}
+  
+.flex-container > div {
+    text-align: center;
+}

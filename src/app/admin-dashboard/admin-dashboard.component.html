@@ -1,0 +1,148 @@
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <mat-card class="example-card">
+        <div class="title" style="background-color: aquamarine">
+          <i class="fa-solid fa-users fa-2xl" style="margin-top: 40%"></i>
+        </div>
+        <mat-card-header>
+          <mat-card-subtitle style="position: relative; left: 60%; bottom: 80%"
+            >Total Employees</mat-card-subtitle
+          >
+          <mat-card-title class="infos"
+            >{{ nbOfEmployees }} Employees</mat-card-title
+          >
+        </mat-card-header>
+      </mat-card>
+    </div>
+
+    <div class="col-3">
+      <mat-card class="example-card">
+        <div class="title" style="background-color: #ff4500">
+          <i
+            class="fa-solid fa-calendar-check fa-2xl"
+            style="margin-top: 40%"
+          ></i>
+        </div>
+        <mat-card-header>
+          <mat-card-subtitle style="position: relative; left: 50%; bottom: 80%"
+            >Total Public Events</mat-card-subtitle
+          >
+          <mat-card-title class="infos"
+            >{{ nbOfPublicEvents }} Public Events</mat-card-title
+          >
+        </mat-card-header>
+      </mat-card>
+    </div>
+
+    <div class="col-3">
+      <mat-card class="example-card">
+        <div class="title" style="background-color: #ff00ff">
+          <i
+            class="fa-solid fa-calendar-xmark fa-2xl"
+            style="margin-top: 40%"
+          ></i>
+        </div>
+        <mat-card-header>
+          <mat-card-subtitle style="position: relative; left: 50%; bottom: 80%"
+            >Total Private Events</mat-card-subtitle
+          >
+          <mat-card-title class="infos"
+            >{{ nbOfPrivateEvents }} Private Events</mat-card-title
+          >
+        </mat-card-header>
+      </mat-card>
+    </div>
+
+    <div class="col-3">
+      <mat-card class="example-card">
+        <div class="title" style="background-color: #00ffff">
+          <i class="fa-solid fa-plane fa-2xl" style="margin-top: 40%"></i>
+        </div>
+        <mat-card-header>
+          <mat-card-subtitle style="position: relative; left: 100%; bottom: 80%"
+            >Total Travels</mat-card-subtitle
+          >
+          <mat-card-title class="infos"
+            >{{ nbOfTravels }} Travels</mat-card-title
+          >
+        </mat-card-header>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input
+          matInput
+          (keyup)="applyFilter($event)"
+          placeholder="Ex. Mia"
+          #input
+        />
+      </mat-form-field>
+
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+          <!-- ID Column -->
+          <ng-container matColumnDef="Full Name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Employee Name
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{ row.name + " " + row.lastName }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Profession">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Profession
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{ row.profession.name }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Phone">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
+            <td mat-cell *matCellDef="let row">
+              {{ row.phone }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+            <td mat-cell *matCellDef="let row">
+              {{ row.email }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Gender">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Gender</th>
+            <td mat-cell *matCellDef="let row">
+              {{ row.gender }}
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">
+              No data matching the filter "{{ input.value }}"
+            </td>
+          </tr>
+        </table>
+
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 25, 100]"
+          aria-label="Select page of employees"
+        ></mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+.example-card {
+  max-width: 75%;
+  margin: 20px;
+  border-radius: 18px;
+}
+
+.title {
+  width: 35%;
+  height: 65px;
+  border-radius: 18px;
+  text-align: center;
+  position: relative;
+  bottom: 40px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+table {
+  width: 100%;
+}
+
+.infos {
+  font-family: "Times New Roman", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+}

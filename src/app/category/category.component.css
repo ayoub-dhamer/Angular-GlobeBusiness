@@ -1,0 +1,59 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.new,
+.old {
+  border-radius: 15px;
+  font-family: "Georgia Pro", sans-serif;
+  font-weight: bold;
+  width: 60%;
+  float: left;
+}
+
+.old {
+  background-color: yellow;
+}
+
+.new {
+  background-color: lawngreen;
+}
+
+.text {
+  position: relative;
+  left: 30%;
+  color: blue;
+  font-size: 10px;
+}
+
+.example-action-buttons {
+  padding-bottom: 20px;
+}
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-headers-align .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}

@@ -1,0 +1,182 @@
+<mat-toolbar class="mat-elevation-z8">
+  <button
+    mat-icon-button
+    *ngIf="sidenav.mode === 'over'"
+    (click)="sidenav.toggle()"
+  >
+    <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+    <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+  </button>
+  Menu
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <img class="avatar mat-elevation-z8" [src]="companyImage" />
+
+    <h4 class="name">{{ companyName }}</h4>
+    <p class="designation">{{ companyDomain }}</p>
+
+    <mat-divider></mat-divider>
+
+    <button
+      mat-button
+      class="menu-button"
+      routerLink="/companySpace/adminDashboard"
+      routerLinkActive="active"
+    >
+      <mat-icon>home</mat-icon>
+      <span>Home</span>
+    </button>
+    <button
+      mat-button
+      class="menu-button"
+      routerLink="/companySpace/eventsAdmin"
+      routerLinkActive="active"
+    >
+      <mat-icon>event_available</mat-icon>
+      <span>Events Management</span>
+    </button>
+    <button mat-button class="menu-button" routerLink="/companySpace/category">
+      <mat-icon> category</mat-icon>
+      <span>Category Management</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <!--<button mat-button class="menu-button" routerLink="/help">
+        <mat-icon>help</mat-icon>
+        <span>Help</span>
+      </button>-->
+    <button mat-raised-button color="accent" (click)="logOut()">
+      <mat-icon>exit_to_app</mat-icon> Log out
+    </button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <div class="container" style="margin-top: 2%">
+        <h1
+          style="
+            text-align: center;
+            position: relative;
+            right: 6%;
+            font-family: 'Georgia Pro', sans-serif;
+            font-size: 30px;
+          "
+        >
+          Employees List
+        </h1>
+        <table
+          mat-table
+          matSort
+          matSortDisabledClear
+          matSortActive="id"
+          matSortDirection="asc"
+          [dataSource]="dataSource"
+          class="mat-elevation-z8"
+        >
+          <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox
+                [checked]="selection.hasValue() && isAllSelected()"
+                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                (change)="$event ? masterToggle() : null"
+              >
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <mat-checkbox
+                [checked]="selection.isSelected(element)"
+                (click)="$event.stopPropagation(); onEmployeeToggled(element)"
+                (change)="$event ? selection.toggle(element) : null"
+              ></mat-checkbox>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>#</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.id }}
+            </td>
+          </ng-container>
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="Full Name">
+            <th mat-header-cell *matHeaderCellDef>Full Name</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.name + " " + element.lastName }}
+            </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="Email">
+            <th mat-header-cell *matHeaderCellDef>Email</th>
+            <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="Gender">
+            <th mat-header-cell *matHeaderCellDef>Gender</th>
+            <td mat-cell *matCellDef="let element">{{ element.gender }}</td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="Phone">
+            <th mat-header-cell *matHeaderCellDef>Phone</th>
+            <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Profession">
+            <th mat-header-cell *matHeaderCellDef>Profession</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.profession.name }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Birth Date">
+            <th mat-header-cell *matHeaderCellDef>Birth Date</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.birthday | date }}
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr
+            mat-row
+            *matRowDef="let row; columns: displayedColumns"
+            (click)="selection.toggle(row)"
+          ></tr>
+        </table>
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 25, 100]"
+          aria-label="Select page of users"
+        ></mat-paginator>
+
+        <div style="text-align: center; position: relative; right: 5%">
+          <button
+            mat-raised-button
+            (click)="sendInvitation()"
+            style="margin-right: 10px"
+            color="primary"
+          >
+            Send Invitation
+          </button>
+          <button mat-raised-button (click)="goBack()" color="warn">
+            Go back
+          </button>
+
+          <div
+            *ngIf="spinner"
+            style="position: relative; left: 46%; width: 10%; height: 10%"
+          >
+            <mat-spinner
+              class="example-margin"
+              color="purple"
+              width="10%"
+            ></mat-spinner>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

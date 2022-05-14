@@ -1,0 +1,27 @@
+<p mat-dialog-title>Rating the Event :</p>
+<div mat-dialog-content>
+  <form [formGroup]="ratingForm">
+    <ngx-star-rating formControlName="nbOfStars"></ngx-star-rating>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Event description</mat-label>
+      <textarea
+        formControlName="comment"
+        matInput
+        placeholder="Add you opinion here"
+      ></textarea>
+    </mat-form-field>
+  </form>
+</div>
+
+<div mat-dialog-action [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+  <button
+    style="margin-left: 8px"
+    mat-raised-button
+    color="primary"
+    (click)="addRating()"
+  >
+    {{ actionBtn }}
+  </button>
+</div>

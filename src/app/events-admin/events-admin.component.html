@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  ></button>
+  <span class="example-spacer">Events List</span>
+  <button
+    style="margin-right: 20px; background-color: #e6e6fa"
+    mat-raised-button
+    routerLink="publicEvents"
+    routerLinkActive="active"
+  >
+    Public
+  </button>
+  <button
+    mat-raised-button
+    style="background-color: #e6e6fa"
+    routerLink="privateEvents"
+    routerLinkActive="active"
+  >
+    Private
+  </button>
+</mat-toolbar>
+
+<div class="route-container" [@routeAnimation]="getDepth(myOutlet)">
+  <router-outlet #myOutlet="outlet"></router-outlet>
+</div>

@@ -1,0 +1,112 @@
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+/>
+
+<div class="container header"></div>
+<h1>List of All The Public Events</h1>
+<div class="flex-container">
+  <mat-card
+    *ngFor="let event of events"
+    (mouseenter)="
+      getNbOfLikesForEvent(event.eventId);
+      getNbOfCommentsForEvent(event.eventId)
+    "
+    class="example-card"
+  >
+    <div class="card__content">
+      <div class="card__front">
+        <div class="favorite">
+          <div *ngIf="validateFavorite(event.eventId)">
+            <i class="material-icons" style="color: rgb(255, 0, 251)"
+              >favorite</i
+            >
+          </div>
+        </div>
+
+        <mat-card-header>
+          <mat-card-title
+            style="
+              font-family: 'Gabriola', sans-serif;
+              font-weight: bold;
+              font-size: 30px;
+            "
+            >{{ event.title }}</mat-card-title
+          >
+        </mat-card-header>
+        <img
+          mat-card-image
+          [src]="getImage(event.image)"
+          [alt]="event.image.name"
+        />
+        <mat-card-content>
+          <p>
+            {{ event.description }}
+          </p>
+        </mat-card-content>
+      </div>
+
+      <div class="card__back">
+        <div class="favorite">
+          <div *ngIf="validateFavorite(event.eventId); else elseBlock">
+            <button mat-button (click)="deleteFavorite(event)">
+              <i class="material-icons" style="color: rgb(255, 0, 251)"
+                >favorite</i
+              >{{ nbLikes }} Likes
+            </button>
+          </div>
+          <ng-template #elseBlock>
+            <button mat-button (click)="addFavorite(event)">
+              <mat-icon>favorite_border</mat-icon>{{ nbLikes }} Likes
+            </button>
+          </ng-template>
+        </div>
+
+        <br />
+        <br />
+        <br />
+        <div style="margin-bottom: 6%">
+          The Event starts at {{ event.startDate | date }}, <br />
+          and its taking place in {{ event.location }} <br />
+          and it lasts for {{ event.duration }}.<br />
+          Category : {{ event.category.name }}<br />
+        </div>
+
+        <div *ngIf="validateRating(event.eventId); else blo">
+          <button mat-raised-button color="accent" (click)="openDialog(event)">
+            Edit Rating
+          </button>
+          <button
+            mat-raised-button
+            color="warn"
+            style="margin-left: 8px"
+            (click)="deleteRating(event)"
+          >
+            Delete Rating
+          </button>
+        </div>
+
+        <ng-template #blo
+          ><button
+            style="margin-bottom: 6%"
+            mat-raised-button
+            color="primary"
+            (click)="openDialog(event)"
+          >
+            Add Rating
+          </button></ng-template
+        >
+        <br />
+        <button
+          mat-raised-button
+          style="background-color: lightgrey"
+          (click)="showRatings(event)"
+        >
+          Show Ratings
+        </button>
+        <br />
+        {{ nbComments }} Rating
+      </div>
+    </div>
+  </mat-card>
+</div>
